@@ -78,7 +78,7 @@ readinessProbe:
   timeoutSeconds: 0
 externalServices: []
 podAnnotations:
-  {}
+  eks.amazonaws.com/role-arn: arn:aws:iam::170982004044:role/dev-role
   # iam.amazonaws.com/role: myapp-cluster
 # additionals labels
 labels: {}
@@ -120,8 +120,9 @@ lifecycle:
   #   exec:
   #     command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
 rbac:
-  create: false
-  serviceAccountAnnotations: {}
+  create: true
+  serviceAccountAnnotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::170982004044:role/dev-role
   serviceAccountName: ""
 # This is the PriorityClass settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
