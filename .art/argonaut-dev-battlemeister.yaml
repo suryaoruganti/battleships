@@ -122,7 +122,7 @@ lifecycle:
 rbac:
   create: true
   serviceAccountAnnotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::170982004044:role/dev-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::170982004044:role/so-deleteme1
   serviceAccountName: ""
 # This is the PriorityClass settings as defined in
 # https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass
