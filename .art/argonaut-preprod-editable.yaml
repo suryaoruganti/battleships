@@ -19,7 +19,7 @@ argonaut:
   region: us-east-2
   cluster: preprod
   imageRegistry: ecr # corresponding to the image that is to be deployed
-  serviceType: "stateless" # One of {stateful, stateless, managed}
+  serviceType: "" # One of {stateful, stateless, managed}
   repoName: battleships
 persistentStorage:
   []
@@ -30,7 +30,7 @@ maxReplicas: 1
 resources:
   requests:
     cpu: "100m"
-    memory: "222M"
+    memory: "256M"
   limits:
     cpu: "1000m"
     memory: "1500M"
