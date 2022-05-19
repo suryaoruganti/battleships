@@ -1,0 +1,4 @@
+---
+version: "v1"
+name: postgresql.google.com
+appName: postgresql
