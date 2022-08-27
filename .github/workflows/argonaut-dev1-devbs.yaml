@@ -1,0 +1,113 @@
+name: "Deploy devbs"
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+  workflow_dispatch:
+
+env:
+
+  ART_REGISTRY_URL: us-west1-docker.pkg.dev/dev1-360704/argonaut-gar-2bb3aca0/devbs-dev1
+
+jobs:
+  build:
+    
+    environment: 
+      name: dev1 
+    
+    runs-on: ubuntu-latest
+    name: Build and Push Img
+    steps:
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+      - name: Fetch repo
+        uses: actions/checkout@v2
+      - name: Get Short SHA
+        id: get_sha
+        run: echo ::set-output name=SHA_SHORT::$(git rev-parse --short HEAD)
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Download art
+        run: |
+          curl --silent https://github.com/argonautdev/public/releases/latest/download/art-linux -L -o art
+          chmod +x ./art
+          mv ./art /usr/local/bin/art
+      - name: Fetch BuildTime Secrets
+        run: |
+          art configure --key ${{ secrets.aiyvw36dw0fmz3bv_ART_KEY }} --secret ${{ secrets.aiyvw36dw0fmz3bv_ART_SECRET }}
+          art app envvars get -f .art/argonaut-dev1-devbs.yaml \
+            --set appName="devbs" \
+            --set argonaut.env="dev1" \
+            --set argonaut.region="us-west1" \
+            --set argonaut.cluster="dev1" \
+            --set argonaut.serviceType="stateless" \
+            --set argonaut.imageRegistry="argonaut-gar-2bb3aca0" \
+            --type buildtime \
+            --format dotenv > art-build-secrets.env
+          echo 'ART_BUILD_SECRETS_FILE<<EOF' >> $GITHUB_ENV
+          cat art-build-secrets.env >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
+      - name: Set GCP Credentials via art
+        run: |
+          art configure generate-gcp-credentials --project dev1-360704 >> credentials.json
+          echo "CLOUDSDK_AUTH_ACCESS_TOKEN=$(cat credentials.json | jq --raw-output '.access_token')" >> $GITHUB_ENV
+          echo "CLOUDSDK_CORE_PROJECT=dev1-360704" >> $GITHUB_ENV
+
+      - name: Login to GAR
+        run: echo $CLOUDSDK_AUTH_ACCESS_TOKEN | docker login -u oauth2accesstoken --password-stdin ${{ env.ART_REGISTRY_URL }}
+
+      - name: Build Image
+        uses: docker/build-push-action@v2
+        id: build
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.ART_REGISTRY_URL }}:${{ steps.get_sha.outputs.SHA_SHORT }}
+          build-args: |
+            ${{ env.ART_BUILD_SECRETS_FILE }}
+          outputs: type=registry
+
+  deploy:
+    
+    environment: 
+      name: dev1 
+    
+    runs-on: ubuntu-latest
+    name: Deploy to Argonaut
+    needs: build
+    steps:
+      - name: Fetch repo
+        uses: actions/checkout@v2
+      - name: Fetch branch name
+        shell: bash
+        run: echo ::set-output name=BRANCH_NAME::${GITHUB_REF#refs/heads/}
+        id: get_branch_name
+      - name: Get Short SHA
+        id: get_sha
+        run: echo ::set-output name=SHA_SHORT::$(git rev-parse --short HEAD)
+      - name: Download art
+        run: curl --silent https://github.com/argonautdev/public/releases/latest/download/art-linux -L -o art
+      - name: Configure art
+        run: |
+          chmod +x ./art
+          sudo mv ./art /usr/local/bin/art
+          art configure --key ${{ secrets.aiyvw36dw0fmz3bv_ART_KEY }} --secret ${{ secrets.aiyvw36dw0fmz3bv_ART_SECRET }}
+          art app deploy -f .art/argonaut-dev1-devbs.yaml \
+            --set 'labels.argonaut\.dev/git-provider'='github' \
+            --set  argonaut.git-provider='github' \
+            --set image="${{ env.ART_REGISTRY_URL }}" \
+            --set imageTag="${{ steps.get_sha.outputs.SHA_SHORT }}" \
+            --set appName="devbs" \
+            --set argonaut.env="dev1" \
+            --set argonaut.region="us-west1" \
+            --set argonaut.cluster="dev1" \
+            --set argonaut.serviceType="stateless" \
+            --set argonaut.imageRegistry="argonaut-gar-2bb3aca0" 
