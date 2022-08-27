@@ -29,8 +29,8 @@ minReplicas: 1
 maxReplicas: 8
 resources:
   requests:
-    cpu: "500m"
-    memory: "512M"
+    cpu: "50m"
+    memory: "222M"
   limits:
     cpu: "1000m"
     memory: "1500M"
