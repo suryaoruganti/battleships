@@ -58,6 +58,10 @@ jobs:
           echo 'ART_BUILD_SECRETS_FILE<<EOF' >> $GITHUB_ENV
           cat art-build-secrets.env >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
+          
+          echo "########################"
+          echo "${{ env.ART_BUILD_SECRETS_FILE }}"
+          echo "########################"
       - name: Build Image
         uses: docker/build-push-action@v2
         id: build
