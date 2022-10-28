@@ -5,6 +5,7 @@ ENV NODE_ENV production
 # ENV PORT ${MY_PORT}
 
 WORKDIR /app
+RUN printenv
 
 COPY ["package.json", "package-lock.json*", "./"]
 
