@@ -60,6 +60,7 @@ jobs:
           echo 'EOF' >> $GITHUB_ENV
           echo "#######################################"
           echo $GITHUB_ENV
+          echo "#######################################--"
           cat ${{ env.ART_BUILD_SECRETS_FILE }}
           echo "#######################################"
       - name: Build Image
