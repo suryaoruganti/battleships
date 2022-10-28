@@ -62,6 +62,16 @@ jobs:
           echo $GITHUB_ENV
           echo "#######################################--"
           cat ${{ env.ART_BUILD_SECRETS_FILE }}
+          echo "#######################################--"
+          art app envvars get -f .art/argonaut-preprod-preprod-envtest.yaml \
+            --set appName="envtest" \
+            --set argonaut.env="preprod" \
+            --set argonaut.region="us-east-2" \
+            --set argonaut.cluster="preprod" \
+            --set argonaut.serviceType="stateless" \
+            --set argonaut.imageRegistry="ecr" \
+            --type buildtime \
+            --format dotenv
           echo "#######################################"
       - name: Build Image
         uses: docker/build-push-action@v2
