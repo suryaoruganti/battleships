@@ -57,7 +57,7 @@ jobs:
             --format dotenv > art-build-secrets.env
           echo 'ART_BUILD_SECRETS_FILE=art-build-secrets.env' >> $GITHUB_ENV
           cat art-build-secrets.env >> $GITHUB_ENV
-          echo 'EOF' >> $GITHUB_ENV
+          
           echo "#######################################"
           cat $GITHUB_ENV
           echo "#######################################--"
