@@ -59,7 +59,7 @@ jobs:
           cat art-build-secrets.env >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           echo "#######################################"
-          echo $GITHUB_ENV
+          cat $GITHUB_ENV
           echo "#######################################--"
           cat ${{ env.ART_BUILD_SECRETS_FILE }}
           echo "#######################################--"
