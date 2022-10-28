@@ -2,7 +2,7 @@
 
 FROM node:12.18.1
 ENV NODE_ENV production
-// ENV PORT ${MY_PORT}
+# ENV PORT ${MY_PORT}
 
 WORKDIR /app
 
