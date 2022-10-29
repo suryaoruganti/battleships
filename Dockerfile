@@ -8,6 +8,7 @@ ARG MY_PORT
 
 WORKDIR /app
 RUN printenv
+RUN echo "${MY_PORT}"
 
 COPY ["package.json", "package-lock.json*", "./"]
 
