@@ -7,8 +7,11 @@ ENV PORT ${MY_PORT}
 ARG MY_PORT
 
 WORKDIR /app
-RUN printenv
+
 RUN echo "${MY_PORT}"
+
+ENV HAHAHAHA ${MY_PORT}
+RUN printenv
 
 COPY ["package.json", "package-lock.json*", "./"]
 
