@@ -10,7 +10,7 @@ services:
     protocol: "tls-terminated" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
     external:
       hosts:
-        - "test1.so.x.previewapp.live"
+        - "so.x.previewapp.live"
       hostPort: 443
       paths: ["/"]
 
