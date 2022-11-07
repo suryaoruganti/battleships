@@ -11,6 +11,7 @@ services:
     external:
       hosts:
         - "so.x.previewapp.live"
+        - "test1.x.previewapp.live"
       hostPort: 443
       paths: ["/"]
 
