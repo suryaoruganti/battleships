@@ -10,8 +10,8 @@ services:
     protocol: "tcp" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
     external:
       hosts:
-        - "whatever.com"
-      hostPort: 443
+        - "tcp.pp.argonaut.live"
+      hostPort: 8123
       paths: ["/"]
 
 argonaut:
