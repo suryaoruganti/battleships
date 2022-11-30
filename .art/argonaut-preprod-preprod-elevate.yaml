@@ -7,9 +7,6 @@ imageTag: "latest"
 
 services:
   - port: 80
-    extraAnnotations:
-      - a: b
-      - foo: bar
     protocol: "tls-terminated" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
     external:
       hosts:
@@ -184,4 +181,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-11-29 21:14:20.351730073 +0000 UTC
+# Generated at 2022-11-30 05:40:02.277469822 +0000 UTC
