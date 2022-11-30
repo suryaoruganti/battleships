@@ -60,16 +60,7 @@ secretMounts:
   #   path: /usr/share/myapp/config/certs
 sidecarResources:
   {}
-  # limits:
-  #   cpu: "25m"
-  #   # memory: "128Mi"
-  # requests:
-  #   cpu: "25m"
-  #   memory: "128Mi"
-# networkHost: "0.0.0.0"
-# The default value of 1 will make sure that kubernetes won't allow more than 1
-# of your pods to be unavailable during maintenance
-# maxUnavailable: 25%
+ 
 updateStrategy: RollingUpdate
 # How long to wait for myapp to stop gracefully
 terminationGracePeriod: 30
@@ -125,60 +116,3 @@ initContainer:
   # image: nginx
 initResources:
   {}
-  # limits:
-  #   cpu: "25m"
-  #   # memory: "128Mi"
-  # requests:
-  #   cpu: "25m"
-  #   memory: "128Mi"
-extraInitContainers:
-  []
-  # - name: do-something
-  #   image: busybox
-  #   command: ['do', 'something']
-extraVolumes:
-  []
-  # - name: extras
-  #   emptyDir: {}
-extraVolumeMounts:
-  []
-  # - name: extras
-  #   mountPath: /usr/share/extras
-  #   readOnly: true
-extraContainers:
-  []
-  # - name: do-something
-  #   image: busybox
-  #   command: ['do', 'something']
-# Allows you to add any config files in /usr/share/myapp/config/
-# as a ConfigMap
-extraConfig:
-  []
-  # - name: configName
-  #   path: "/path/to/config/folder/"
-  #   readOnly: true
-  #   data:
-  #     pokedex.yaml: |
-  #       pokemonName: Pikachu
-  #       pokemonType: Lightning
-  #     battle.yaml: |
-  #       pokemon1: Pikachu
-  #       pokemon2: MewTwo
-  # - name: configName2
-  #   path: "/path/to/config/anotherfolder/"
-  #   readOnly: true
-  #   data:
-  #     pokedex.yaml: |
-  #       pokemonName: Pikachu
-  #       pokemonType: Lightning
-  #     battle.yaml: |
-  #       pokemon1: Pikachu
-  #       pokemon2: MewTwo
-# Extra environment variables to append to this nodeGroup
-# This will be appended to the current 'env:' key. You can use any of the kubernetes env
-# syntax here
-extraEnvs: []
-#  - name: MY_ENVIRONMENT_VAR
-#    value: the_value_goes_here
-
-# Generated at 2022-11-30 05:40:02.277469822 +0000 UTC
