@@ -48,8 +48,10 @@ jobs:
           mv ./art /usr/local/bin/art
       - name: Fetch BuildTime Secrets
         run: |
-          art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
+          art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }} --frontegg-server=argonaut-pp.frontegg.com --midgard-server=midgard.pp.argonaut.live
           art app envvars get -f .art/argonaut-dev3-wahal-echo.yaml \
+            --frontegg-server=argonaut-pp.frontegg.com \
+            --midgard-server=midgard.pp.argonaut.live \
             --set appName="echo" \
             --set argonaut.env="dev3" \
             --set argonaut.region="us-east-2" \
@@ -120,8 +122,10 @@ jobs:
         run: |
           chmod +x ./art
           sudo mv ./art /usr/local/bin/art
-          art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
+          art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }} --frontegg-server=argonaut-pp.frontegg.com --midgard-server=midgard.pp.argonaut.live
           art app deploy -f .art/argonaut-dev3-wahal-echo.yaml \
+            --frontegg-server=argonaut-pp.frontegg.com \
+            --midgard-server=midgard.pp.argonaut.live \
             --set image="170982004044.dkr.ecr.us-east-2.amazonaws.com/argonaut/echo" \
             --set 'labels.argonaut\.dev/git-provider'='github' \
             --set  argonaut.git-provider='github' \
