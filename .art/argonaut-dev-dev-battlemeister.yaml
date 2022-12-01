@@ -5,6 +5,15 @@ image: "us-west1-docker.pkg.dev/suryaoruganti/battlemeister"
 imageTag: "latest"
 
 
+services:
+  - port: 80
+    protocol: "tls-terminated" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
+    external:
+      hosts:
+        - "fdghjk.com"
+      hostPort: 443
+      paths: ["/"]
+
 argonaut:
   env: dev
   region: us-west1
@@ -172,4 +181,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-01 16:57:09.544429014 +0000 UTC
+# Generated at 2022-12-01 16:57:24.169024942 +0000 UTC
