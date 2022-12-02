@@ -106,4 +106,5 @@ jobs:
           sudo mv ./art /usr/local/bin/art
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
           art app deploy -f .art/argonaut-gcpdev-dev-battleshipsgar.yaml \
+            --set image="${{ env.ART_REGISTRY_URL }}" \
             --set imageTag="${{ steps.get_sha.outputs.SHA_SHORT }}" 
