@@ -10,7 +10,7 @@ services:
     protocol: "tls-terminated" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
     external:
       hosts:
-        - "asdasdasdtest.wah.al"
+        - "asdasdasasdasddtest.wah.al"
       hostPort: 443
       paths: ["/"]
 
@@ -55,7 +55,7 @@ scaledObject:
       name: foxtrot
     triggers:
       - metadata:
-          value: "70"
+          value: "90"
         metricType: Utilization
         type: cpu
   
@@ -202,4 +202,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-05 05:28:35.963042388 +0000 UTC
+# Generated at 2022-12-05 05:31:56.491948964 +0000 UTC
