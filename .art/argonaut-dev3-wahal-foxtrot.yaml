@@ -47,17 +47,17 @@ scaledObject:
     name: cpu-foxtrot-scaledobject
     namespace: wahal
   spec:
-    pollingInterval: 30
     cooldownPeriod: 300
-    minReplicaCount: 1
     maxReplicaCount: 200
+    minReplicaCount: 1
+    pollingInterval: 30
     scaleTargetRef:
       name: foxtrot
     triggers:
-      - type: cpu
+      - metadata:
+          value: "90"
         metricType: Utilization
-        metadata:
-          value: "70"
+        type: cpu
   
 externalServices: []
 podAnnotations:
@@ -202,4 +202,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-05 04:41:30.582877361 +0000 UTC
+# Generated at 2022-12-05 04:49:43.732994153 +0000 UTC
