@@ -48,7 +48,7 @@ scaledObject:
     namespace: wahal
   spec:
     cooldownPeriod: 300
-    maxReplicaCount: 200
+    maxReplicaCount: 100
     minReplicaCount: 1
     pollingInterval: 30
     scaleTargetRef:
@@ -202,4 +202,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-05 04:49:43.732994153 +0000 UTC
+# Generated at 2022-12-05 04:51:54.139305824 +0000 UTC
