@@ -12,7 +12,6 @@ argonaut:
   imageRegistry: argonaut-gar-9792c74b # corresponding to the image that is to be deployed
   serviceType: "stateless" # One of {stateful, stateless, managed}
   repoName: battleships
-  git-provider: github
 persistentStorage:
   []
 
@@ -30,14 +29,14 @@ resources:
 # Everything below this is optional and advanced configuration                          #
 # and irrelevant in most scenarios.                                                     #
 #########################################################################################
+
+# Keda configuration
 externalServices: []
 podAnnotations:
   {}
   # iam.amazonaws.com/role: myapp-cluster
 # additionals labels
-labels: {
-  argonaut.dev/git-provider: github
-}
+labels: {}
 
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
@@ -175,4 +174,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-02 11:41:43.853997 +0000 UTC
+# Generated at 2022-12-05 10:35:09.303989114 +0000 UTC

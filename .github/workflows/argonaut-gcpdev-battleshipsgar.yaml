@@ -1,4 +1,4 @@
-name: "Deploy battleshipsgar"
+name: "Deploy battleshipsgar - gcpdev"
 
 on:
   push:
@@ -51,6 +51,12 @@ jobs:
         run: |
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
           art app envvars get -f .art/argonaut-gcpdev-dev-battleshipsgar.yaml \
+            --set appName="battleshipsgar" \
+            --set argonaut.env="gcpdev" \
+            --set argonaut.region="us-west1" \
+            --set argonaut.cluster="dev" \
+            --set argonaut.serviceType="stateless" \
+            --set argonaut.imageRegistry="argonaut-gar-9792c74b" \
             --type buildtime \
             --format dotenv > art-build-secrets.env
           echo 'ART_BUILD_SECRETS_FILE<<EOF' >> $GITHUB_ENV
@@ -106,5 +112,13 @@ jobs:
           sudo mv ./art /usr/local/bin/art
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
           art app deploy -f .art/argonaut-gcpdev-dev-battleshipsgar.yaml \
+            --set 'labels.argonaut\.dev/git-provider'='github' \
+            --set  argonaut.git-provider='github' \
             --set image="${{ env.ART_REGISTRY_URL }}" \
-            --set imageTag="${{ steps.get_sha.outputs.SHA_SHORT }}" 
+            --set imageTag="${{ steps.get_sha.outputs.SHA_SHORT }}" \
+            --set appName="battleshipsgar" \
+            --set argonaut.env="gcpdev" \
+            --set argonaut.region="us-west1" \
+            --set argonaut.cluster="dev" \
+            --set argonaut.serviceType="stateless" \
+            --set argonaut.imageRegistry="argonaut-gar-9792c74b" 
