@@ -1,4 +1,4 @@
-name: "Deploy foxtrot"
+name: "Deploy foxtrot - dev3"
 
 on:
   push:

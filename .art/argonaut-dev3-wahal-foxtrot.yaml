@@ -55,7 +55,7 @@ scaledObject:
       name: foxtrot
     triggers:
       - metadata:
-          value: "100"
+          value: "60"
         metricType: Utilization
         type: cpu
   
@@ -202,4 +202,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-05 05:37:48.641364002 +0000 UTC
+# Generated at 2022-12-07 07:17:47.342969967 +0000 UTC
