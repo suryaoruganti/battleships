@@ -98,6 +98,8 @@ jobs:
     steps:
       - name: Fetch repo
         uses: actions/checkout@v2
+      - name: Check IP
+        run: curl https://api.ipify.org
       - name: Fetch branch name
         shell: bash
         run: echo ::set-output name=BRANCH_NAME::${GITHUB_REF#refs/heads/}
