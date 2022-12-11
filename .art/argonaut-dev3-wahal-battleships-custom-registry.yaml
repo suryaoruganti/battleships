@@ -1,7 +1,7 @@
 ---
 version: "v1"
-appName: "battleships-custom-registry" 
-image: "170982004044.dkr.ecr.us-east-2.amazonaws.com/argonaut/battleships-custom-registry"
+appName: "battleships-custom-registry"
+image: "docker.io/suryaoruganti/battleships-custom-registry"
 imageTag: "latest"
 
 
@@ -9,7 +9,7 @@ argonaut:
   env: dev3
   region: us-east-2
   cluster: wahal
-  imageRegistry: ecr # corresponding to the image that is to be deployed
+  imageRegistry: pp # corresponding to the image that is to be deployed
   serviceType: "stateless" # One of {stateful, stateless, managed}
   repoName: battleships
 persistentStorage:
@@ -174,4 +174,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-11 10:39:23.252920702 +0000 UTC
+# Generated at 2022-12-11 10:43:28.515970203 +0000 UTC
