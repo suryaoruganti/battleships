@@ -52,7 +52,7 @@ jobs:
             --set argonaut.region="us-east-2" \
             --set argonaut.cluster="wahal" \
             --set argonaut.serviceType="stateless" \
-            --set argonaut.imageRegistry="pp" \
+            --set argonaut.imageRegistry="shubhamtest" \
             --type buildtime \
             --format dotenv > art-build-secrets.env
           echo 'ART_BUILD_SECRETS_FILE<<EOF' >> $GITHUB_ENV
@@ -62,8 +62,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: docker.io
-          username: argonautpp
-          password: ${{ secrets.ARG_PP_ACCESS_TOKEN }}
+          username: shubhamargonaut
+          password: ${{ secrets.ARG_SHUBHAMTEST_ACCESS_TOKEN }}
       - name: Build Image and Push
         uses: docker/build-push-action@v2
         id: build-push
@@ -73,9 +73,9 @@ jobs:
           push: true
           build-args: |
             ${{ env.ART_BUILD_SECRETS_FILE }}
-          tags: docker.io/dev3/battleships-custom-registry-dev3:${{ steps.get_sha.outputs.SHA_SHORT }}
-          cache-from: type=registry,ref=docker.io/dev3/battleships-custom-registry-dev3:buildcache
-          cache-to: type=registry,ref=docker.io/dev3/battleships-custom-registry-dev3:buildcache,mode=max
+          tags: docker.io/dev/battleships-custom-registry-dev3:${{ steps.get_sha.outputs.SHA_SHORT }}
+          cache-from: type=registry,ref=docker.io/dev/battleships-custom-registry-dev3:buildcache
+          cache-to: type=registry,ref=docker.io/dev/battleships-custom-registry-dev3:buildcache,mode=max
 
   deploy:
     
@@ -100,7 +100,7 @@ jobs:
           sudo mv ./art /usr/local/bin/art
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
           art app deploy -f .art/argonaut-dev3-wahal-battleships-custom-registry.yaml \
-            --set image="docker.io/dev3/battleships-custom-registry-dev3" \
+            --set image="docker.io/dev/battleships-custom-registry-dev3" \
             --set 'labels.argonaut\.dev/git-provider'='github' \
             --set argonaut.git-provider='github' \
             --set imageTag="${{ steps.get_sha.outputs.SHA_SHORT }}" \
@@ -109,4 +109,4 @@ jobs:
             --set argonaut.region="us-east-2" \
             --set argonaut.cluster="wahal" \
             --set argonaut.serviceType="stateless" \
-            --set argonaut.imageRegistry="pp" 
+            --set argonaut.imageRegistry="shubhamtest" 

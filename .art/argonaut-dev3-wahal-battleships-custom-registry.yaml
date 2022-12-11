@@ -9,7 +9,7 @@ argonaut:
   env: dev3
   region: us-east-2
   cluster: wahal
-  imageRegistry: pp # corresponding to the image that is to be deployed
+  imageRegistry: shubhamtest # corresponding to the image that is to be deployed
   serviceType: "stateless" # One of {stateful, stateless, managed}
   repoName: battleships
 persistentStorage:
@@ -174,4 +174,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-11 10:43:28.515970203 +0000 UTC
+# Generated at 2022-12-11 10:51:06.645380901 +0000 UTC
