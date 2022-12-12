@@ -10,7 +10,7 @@ services:
     protocol: "tls-terminated" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
     external:
       hosts:
-        - "549ufieko.wah.al"
+        - "5sndbkjfhsdkjfko.wah.al"
       hostPort: 443
       paths: ["/"]
 
@@ -183,4 +183,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-12 11:54:31.3026565 +0000 UTC
+# Generated at 2022-12-12 12:00:04.488657695 +0000 UTC
