@@ -1,7 +1,7 @@
 ---
 version: "v1"
-appName: "battleships-ecr"
-image: "170982004044.dkr.ecr.us-east-2.amazonaws.com/argonaut/battleships-ecr" 
+appName: "battleships-ecr2"
+image: "170982004044.dkr.ecr.us-east-2.amazonaws.com/argonaut/battleships-ecr2" 
 imageTag: "latest"
 
 
@@ -175,4 +175,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-14 04:24:21.229639 +0000 UTC
+# Generated at 2022-12-14 04:29:41.99458 +0000 UTC
