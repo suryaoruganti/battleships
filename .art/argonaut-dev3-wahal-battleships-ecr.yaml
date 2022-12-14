@@ -1,7 +1,7 @@
 ---
 version: "v1"
-appName: "battleships-ecr" 
-image: "170982004044.dkr.ecr.us-east-2.amazonaws.com/argonaut/battleships-ecr"
+appName: "battleships-ecr"
+image: "170982004044.dkr.ecr.us-east-2.amazonaws.com/argonaut/battleships-ecr" 
 imageTag: "latest"
 
 
@@ -12,6 +12,7 @@ argonaut:
   imageRegistry: ecr # corresponding to the image that is to be deployed
   serviceType: "stateless" # One of {stateful, stateless, managed}
   repoName: battleships
+  git-provider: github
 persistentStorage:
   []
 
@@ -29,14 +30,14 @@ resources:
 # Everything below this is optional and advanced configuration                          #
 # and irrelevant in most scenarios.                                                     #
 #########################################################################################
-
-# Keda configuration
 externalServices: []
 podAnnotations:
   {}
   # iam.amazonaws.com/role: myapp-cluster
 # additionals labels
-labels: {}
+labels: {
+  argonaut.dev/git-provider: github
+}
 
 # Allows you to load environment variables from kubernetes secret or config map
 envFrom: []
@@ -174,4 +175,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-14 03:56:24.320169668 +0000 UTC
+# Generated at 2022-12-14 04:24:21.229639 +0000 UTC
