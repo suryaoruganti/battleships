@@ -1,4 +1,4 @@
-name: "Deploy battleships-custom-registry - dev3"
+name: "Deploy battleships-custom-registry"
 
 on:
   push:
@@ -20,6 +20,9 @@ env:
 
 jobs:
   build:
+    
+    environment: 
+      name: dev3 
     
     runs-on: ubuntu-latest
     name: Build and Push Img
@@ -47,12 +50,6 @@ jobs:
         run: |
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
           art app envvars get -f .art/argonaut-dev3-wahal-battleships-custom-registry.yaml \
-            --set appName="battleships-custom-registry" \
-            --set argonaut.env="dev3" \
-            --set argonaut.region="us-east-2" \
-            --set argonaut.cluster="wahal" \
-            --set argonaut.serviceType="stateless" \
-            --set argonaut.imageRegistry="argonautpp" \
             --type buildtime \
             --format dotenv > art-build-secrets.env
           echo 'ART_BUILD_SECRETS_FILE<<EOF' >> $GITHUB_ENV
@@ -79,6 +76,9 @@ jobs:
 
   deploy:
     
+    environment: 
+      name: dev3 
+    
     runs-on: ubuntu-latest
     name: Deploy to Argonaut
     needs: build
@@ -100,13 +100,4 @@ jobs:
           sudo mv ./art /usr/local/bin/art
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
           art app deploy -f .art/argonaut-dev3-wahal-battleships-custom-registry.yaml \
-            --set image="docker.io/shubhamargonaut/battleships-custom-registry-dev3" \
-            --set 'labels.argonaut\.dev/git-provider'='github' \
-            --set argonaut.git-provider='github' \
-            --set imageTag="${{ steps.get_sha.outputs.SHA_SHORT }}" \
-            --set appName="battleships-custom-registry" \
-            --set argonaut.env="dev3" \
-            --set argonaut.region="us-east-2" \
-            --set argonaut.cluster="wahal" \
-            --set argonaut.serviceType="stateless" \
-            --set argonaut.imageRegistry="argonautpp" 
+            --set imageTag="${{ steps.get_sha.outputs.SHA_SHORT }}" 
