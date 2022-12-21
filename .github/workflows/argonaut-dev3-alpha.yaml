@@ -8,7 +8,7 @@ on:
       - "**"
       - .github/workflows/argonaut-dev3-alpha.yaml
       - Dockerfile
-      - .art/argonaut-dev3-madras-alpha.yaml
+      - .art/argonaut-dev3-shillong-alpha.yaml
     tags:
       - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
   workflow_dispatch:
@@ -46,12 +46,12 @@ jobs:
       - name: Fetch BuildTime Secrets
         run: |
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
-          art app envvars get -f .art/argonaut-dev3-madras-alpha.yaml \
+          art app envvars get -f .art/argonaut-dev3-shillong-alpha.yaml \
             --set appName="alpha" \
             --set argonaut.env="dev3" \
             --set argonaut.region="us-east-2" \
-            --set argonaut.cluster="madras" \
-            --set argonaut.serviceType="stateless" \
+            --set argonaut.cluster="shillong" \
+            --set argonaut.serviceType="stateful" \
             --set argonaut.imageRegistry="ecr" \
             --type buildtime \
             --format dotenv > art-build-secrets.env
@@ -115,11 +115,11 @@ jobs:
           chmod +x ./art
           sudo mv ./art /usr/local/bin/art
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
-          art app deploy -f .art/argonaut-dev3-madras-alpha.yaml \
+          art app deploy -f .art/argonaut-dev3-shillong-alpha.yaml \
             --set  imageTag="${{ steps.get_sha.outputs.SHA_SHORT }}" \
             --set appName="alpha" \
             --set argonaut.env="dev3" \
             --set argonaut.region="us-east-2" \
-            --set argonaut.cluster="madras" \
-            --set argonaut.serviceType="stateless" \
+            --set argonaut.cluster="shillong" \
+            --set argonaut.serviceType="stateful" \
             --set argonaut.imageRegistry="ecr" 
