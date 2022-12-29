@@ -8,7 +8,7 @@ on:
       - "**"
       - .github/workflows/argonaut-dev5-test.yaml
       - Dockerfile
-      - .art/argonaut-dev5-secretstestcluster-test.yaml
+      - .art/argonaut-dev5-mulawstest-test.yaml
     tags:
       - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
   workflow_dispatch:
@@ -46,7 +46,7 @@ jobs:
       - name: Fetch BuildTime Secrets
         run: |
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
-          art app envvars get -f .art/argonaut-dev5-secretstestcluster-test.yaml \
+          art app envvars get -f .art/argonaut-dev5-mulawstest-test.yaml \
             --type buildtime \
             --format dotenv > art-build-secrets.env
           echo 'ART_BUILD_SECRETS_FILE<<EOF' >> $GITHUB_ENV
@@ -109,5 +109,5 @@ jobs:
           chmod +x ./art
           sudo mv ./art /usr/local/bin/art
           art configure --key ${{ secrets.dev_ART_KEY }} --secret ${{ secrets.dev_ART_SECRET }}
-          art app deploy -f .art/argonaut-dev5-secretstestcluster-test.yaml \
+          art app deploy -f .art/argonaut-dev5-mulawstest-test.yaml \
             --set  imageTag="${{ steps.get_sha.outputs.SHA_SHORT }}" 
