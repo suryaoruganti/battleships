@@ -41,6 +41,25 @@ resources:
 #########################################################################################
 
 # Keda configuration
+scaledObject: 
+  apiVersion: keda.sh/v1alpha1
+  kind: ScaledObject
+  metadata:
+    name: cpu-test-scaledobject
+    namespace: mulawstest
+  spec:
+    cooldownPeriod: 300
+    maxReplicaCount: 200
+    minReplicaCount: 1
+    pollingInterval: 30
+    scaleTargetRef:
+      name: test
+    triggers:
+      - metadata:
+          value: "70"
+        metricType: Utilization
+        type: cpu
+  
 externalServices: []
 podAnnotations:
   {}
@@ -186,4 +205,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-29 06:41:12.094837526 +0000 UTC
+# Generated at 2023-01-10 10:05:18.118169656 +0000 UTC
