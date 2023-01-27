@@ -5,6 +5,12 @@ image: "170982004044.dkr.ecr.us-east-2.amazonaws.com/argonaut/battlemeister"
 imageTag: "latest"
 
 
+services:
+  - port: 80
+    protocol: "tcp" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
+    external:
+      hostPort: 8888
+
 argonaut:
   env: preprod
   region: us-east-2
@@ -177,4 +183,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2022-12-20 12:52:15.743498868 +0000 UTC
+# Generated at 2023-01-27 16:15:01.147315816 +0000 UTC
