@@ -13,6 +13,8 @@ services:
         - "stemly.pp.argonaut.live"
       hostPort: 443
       paths: ["/"]
+  - port: 80
+    protocol: "http" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
 
 argonaut:
   env: preprod
@@ -182,4 +184,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2023-02-14 22:18:04.981466138 +0000 UTC
+# Generated at 2023-02-14 22:18:25.826374007 +0000 UTC
