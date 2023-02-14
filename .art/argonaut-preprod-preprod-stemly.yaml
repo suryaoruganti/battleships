@@ -15,6 +15,10 @@ services:
       paths: ["/"]
   - port: 80
     protocol: "http" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
+  - port: 80
+    protocol: "tcp" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
+    external:
+      hostPort: 5020
 
 argonaut:
   env: preprod
@@ -184,4 +188,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2023-02-14 22:18:25.826374007 +0000 UTC
+# Generated at 2023-02-14 22:18:52.506894625 +0000 UTC
