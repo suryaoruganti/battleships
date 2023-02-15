@@ -8,6 +8,10 @@ imageTag: "latest"
 services:
   - port: 80
     protocol: "http" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
+  - port: 80
+    protocol: "tcp" # tls-passthrough, tls-terminated, tcp, http, grpc need to be supported
+    external:
+      hostPort: 6422
 
 argonaut:
   env: preprod
@@ -177,4 +181,4 @@ extraEnvs: []
 #  - name: MY_ENVIRONMENT_VAR
 #    value: the_value_goes_here
 
-# Generated at 2023-02-15 04:59:15.511474108 +0000 UTC
+# Generated at 2023-02-15 04:59:45.413750736 +0000 UTC
