@@ -1,8 +1,13 @@
-run-name: "[${{inputs.arg_task_id}}] Argonaut Workflow : ${{inputs.arg_task_name}}"
+run-name: "${{inputs.arg_task_title}}"
 
 on:
   workflow_dispatch:
     inputs:
+      arg_task_title:
+        required: false
+        type: string
+        default: "[Argonaut] [manual] ar2nsbcq25kwi63r build - manual"
+        description: task short title to be used for display, format [Argonaut] [<Task Id>] <organization> <steptype> - <stepname>
       arg_task_id:
         required: true
         type: string
@@ -10,7 +15,7 @@ on:
       arg_task_name:
         required: true
         type: string
-        description: task description
+        description: task name
       arg_ref:
         required: true
         type: string
