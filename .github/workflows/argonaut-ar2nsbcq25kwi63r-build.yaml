@@ -1,4 +1,4 @@
-run-name: "[${{inputs.arg_task_id}}] Argoanut Workflow : ${{inputs.arg_task_name}}"
+run-name: "[${{inputs.arg_task_id}}] Argonaut Workflow : ${{inputs.arg_task_name}}"
 
 on:
   workflow_dispatch:
