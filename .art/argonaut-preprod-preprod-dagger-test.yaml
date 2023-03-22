@@ -169,8 +169,8 @@ extraConfig:
 # Extra environment variables to append to this nodeGroup
 # This will be appended to the current 'env:' key. You can use any of the kubernetes env
 # syntax here
-extraEnvs: []
-#  - name: MY_ENVIRONMENT_VAR
-#    value: the_value_goes_here
+extraEnvs: 
+ - name: MY_ENVIRONMENT_VAR
+   value: the_value_goes_here
 
 # Generated at 2023-03-21 20:30:32.112728889 +0000 UTC
