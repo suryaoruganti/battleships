@@ -1,3 +1,5 @@
+name: "argonautdev - Argonaut"
+
 run-name: "${{inputs.arg_task_title}}"
 
 on:
