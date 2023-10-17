@@ -25,11 +25,9 @@ on:
         type: string
         description: field for passing extra info, reserved for future
 
-
-
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: warp-ubuntu-latest-x64-2x
     name: Execute Task
     steps:
       - name: Get the version

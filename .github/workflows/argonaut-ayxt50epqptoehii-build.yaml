@@ -27,15 +27,13 @@ on:
         type: string
         description: field for passing extra info, reserved for future
 
-
 env:
-  ARGONAUT_BACKEND: https://midgard-2.pp.argonaut.live 
+  ARGONAUT_BACKEND: https://midgard-2.pp.argonaut.live
   ARGONAUT_AUTH_SERVER: https://argonaut2-pp.frontegg.com
-
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: warp-ubuntu-latest-x64-2x
     name: Execute Task
     steps:
       - name: Get the version
