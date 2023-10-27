@@ -31,7 +31,7 @@ on:
 
 jobs:
   build:
-    runs-on: warp-ubuntu-latest-x64-2x
+    runs-on: ubuntu-latest
     name: Execute Task
     steps:
       - name: Get the version
